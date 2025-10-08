@@ -1,0 +1,123 @@
+/* Main container for the navbar, positions it on the screen */
+.navContainer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  margin-bottom: 1.5rem; /* 24px */
+}
+
+/* Wrapper for the nav items with the blurred background */
+.navWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 12px */
+  background-color: rgba(26, 26, 26, 0.5); /* bg-background/5 -> dark gray with transparency */
+  border: 1px solid #333; /* border-border -> dark gray border */
+  backdrop-filter: blur(16px);
+  padding: 0.25rem; /* 4px */
+  border-radius: 9999px; /* rounded-full */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual link item */
+.navItem {
+  position: relative;
+  cursor: pointer;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600; /* font-semibold */
+  padding: 0.5rem 1.5rem; /* px-6 py-2 */
+  border-radius: 9999px; /* rounded-full */
+  transition: color 0.3s ease;
+  color: #a0a0a0; /* text-foreground/80 */
+  text-decoration: none;
+}
+
+.navItem:hover {
+  color: #0070f3; /* hover:text-primary */
+}
+
+/* Style for the currently active nav item */
+.navItem.active {
+  color: #0070f3; /* text-primary */
+}
+
+.navText {
+  display: none; /* Hidden by default */
+}
+
+.navIcon {
+  display: inline-block; /* Shown by default for mobile */
+}
+
+/* The animated "lamp" effect for the active tab */
+.lamp {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background-color: rgba(0, 112, 243, 0.05); /* bg-primary/5 */
+  border-radius: 9999px;
+  z-index: -10;
+}
+
+/* The glowing light bar effect above the lamp */
+.lightEffect {
+  position: absolute;
+  top: -0.5rem; /* -top-2 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2rem; /* w-8 */
+  height: 0.25rem; /* h-1 */
+  background-color: #0070f3; /* bg-primary */
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+}
+
+/* Glowing effects for the light bar */
+.glow1, .glow2, .glow3 {
+  position: absolute;
+  background-color: rgba(0, 112, 243, 0.2); /* bg-primary/20 */
+  border-radius: 9999px;
+}
+
+.glow1 {
+  width: 3rem;   /* w-12 */
+  height: 1.5rem; /* h-6 */
+  filter: blur(12px); /* blur-md */
+  top: -0.5rem; /* -top-2 */
+  left: -0.5rem; /* -left-2 */
+}
+
+.glow2 {
+  width: 2rem;   /* w-8 */
+  height: 1.5rem; /* h-6 */
+  filter: blur(12px); /* blur-md */
+  top: -0.25rem; /* -top-1 */
+}
+
+.glow3 {
+  width: 1rem;   /* w-4 */
+  height: 1rem;   /* h-4 */
+  filter: blur(4px); /* blur-sm */
+  top: 0;
+  left: 0.5rem; /* left-2 */
+}
+
+
+/* Responsive styles for larger screens */
+@media (min-width: 768px) { /* Corresponds to Tailwind's 'md' breakpoint */
+  .navContainer {
+    top: 0;
+    bottom: auto;
+    padding-top: 1.5rem; /* sm:pt-6 */
+  }
+
+  .navText {
+    display: inline-block; /* Show text */
+  }
+
+  .navIcon {
+    display: none; /* Hide icon */
+  }
+}

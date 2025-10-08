@@ -1,0 +1,78 @@
+/* Main card container */
+.card {
+  background-color: #1a1a1a; /* Darker card background */
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Image container to enforce aspect ratio */
+.imageContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.posterImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container */
+}
+
+/* Text content section */
+.content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allows content to fill available space */
+}
+
+.department {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.summary {
+  font-size: 0.9rem;
+  color: #cccccc;
+  line-height: 1.5;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+/* Footer section for date */
+.footer {
+  margin-top: auto; /* Pushes the footer to the bottom */
+  padding-top: 0.5rem;
+  border-top: 1px solid #333;
+}
+
+.date {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #a0a0a0;
+}
+
