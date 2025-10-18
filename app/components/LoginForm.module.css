@@ -1,17 +1,12 @@
-.formContainer {
-  background-color: var(--card-background);
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px var(--shadow-color);
+.card {
   width: 100%;
-  max-width: 400px;
+  border-radius: 0.75rem;
+  background-color: transparent;
+  color: #e5e7eb;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.75rem;
-  font-weight: 700;
+.cardContent {
+  padding: 0;
 }
 
 .form {
@@ -23,40 +18,88 @@
 .inputGroup {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
 }
 
 .inputGroup label {
-  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: #d1d5db;
 }
 
 .inputGroup input {
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 1rem;
+  display: flex;
+  height: 2.75rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: white;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.inputGroup input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .inputGroup input:focus {
   outline: none;
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
 }
 
-.submitButton {
-  background-color: var(--accent-color);
-  color: white;
+.passwordWrapper {
+  position: relative;
+}
+
+.passwordWrapper input {
+  padding-right: 2.75rem;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  padding: 0 0.75rem;
+  color: #9ca3af;
+  background: transparent;
   border: none;
-  padding: 0.85rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+/* This targets our reusable button component and makes it full-width */
+.submitButton {
+  width: 100% !important;
   margin-top: 1rem;
 }
 
-.submitButton:hover {
-  background-color: var(--accent-color-hover);
+.cardFooter {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.25rem 0 0;
+  margin-top: 1.5rem;
 }
+
+.cardFooter p {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.link {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+

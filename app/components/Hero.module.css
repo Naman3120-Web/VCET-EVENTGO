@@ -1,0 +1,93 @@
+/* The hero container is a normal block that takes up the full screen height */
+.heroContainer {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* The canvas is positioned fixed, BEHIND everything else */
+.canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* The hero's text content sits normally within the heroContainer.
+   The gradient is now applied directly as a background image for better contrast.
+*/
+.contentWrapper {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 1rem;
+  /* This is the fix for the gradient */
+  background-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 10, 25, 0.7) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+.headline {
+  font-weight: 800;
+  font-size: 4.5rem;
+  line-height: 1.1;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+.headline1 {
+  background-image: linear-gradient(to right, #67e8f9, #a5f3fc, #ffffff);
+}
+.headline2 {
+  background-image: linear-gradient(to right, #38bdf8, #7dd3fc, #e0f2fe);
+}
+.subtitle {
+  max-width: 48rem;
+  margin: 1.5rem auto 0;
+  font-size: 1.25rem;
+  color: rgba(224, 242, 254, 0.9);
+  font-weight: 300;
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+.buttonContainer {
+  margin-top: 2.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+/* These styles have been removed as the button is now a separate component.
+  The styles for the new button are in app/components/Button.module.css.
+  The new button is designed to be reusable across the whole site.
+*/
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .headline {
+    font-size: 3rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+

@@ -1,45 +1,61 @@
+"use client";
+
+import styles from "./page.module.css";
+import Hero from "./components/Hero";
 import EventCard from "./components/EventCard";
 import About from "./components/About";
-import styles from "./page.module.css";
+import Link from "next/link";
 
-// Mock data for events
 const mockEvents = [
   {
-    title: "Tech Fest 2024",
-    department: "Computer Science",
-    date: "2024-10-26",
-    posterUrl: "https://placehold.co/600x400/000000/FFFFFF?text=Tech+Fest",
+    title: "Tech Fest 2025",
+    date: "October 15, 2025",
+    posterUrl: "/images/image.jpg",
+    id: "tech-fest-2025",
   },
   {
-    title: "E-Summit",
-    department: "E-Cell",
-    date: "2024-11-05",
-    posterUrl: "https://placehold.co/600x400/1a1a1a/FFFFFF?text=E-Summit",
+    title: "Annual Sports Meet",
+    date: "November 5, 2025",
+    posterUrl: "/images/image.jpg",
+    id: "sports-meet-2025",
   },
   {
-    title: "Mech Mania",
-    department: "Mechanical",
-    date: "2024-11-12",
-    posterUrl: "https://placehold.co/600x400/333333/FFFFFF?text=Mech+Mania",
+    title: "Cultural Night",
+    date: "December 20, 2025",
+    posterUrl: "/images/image.jpg",
+    id: "cultural-night-2025",
   },
 ];
 
 export default function HomePage() {
+  const handlePrimaryClick = () => {
+    const eventsSection = document.getElementById("events");
+    if (eventsSection) {
+      eventsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <main className={styles.main}>
-      <section className={styles.hero}>
-        <h1 className={styles.heroTitle}>VCET-EVENTGO</h1>
-        <p className={styles.heroSubtitle}>
-          Your Central Hub for All College Events.
-        </p>
-      </section>
+      <Hero
+        headline={{ line1: "VCET-EVENTGO", line2: "Your College Events Hub" }}
+        subtitle="Discover, share, and never miss out on what's happening on campus. All events, one place."
+        buttons={{
+          primary: { text: "Explore Events", onClick: handlePrimaryClick },
+        }}
+      />
 
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Upcoming Events</h2>
-        <div className={styles.eventGrid}>
-          {mockEvents.map((event, index) => (
-            <EventCard key={index} event={event} />
-          ))}
+      {/* The sections now follow the hero directly */}
+      <section id="events" className={styles.section}>
+        <div className={styles.sectionContent}>
+          <h2 className={styles.sectionTitle}>Upcoming Events</h2>
+          <div className={styles.eventGrid}>
+            {mockEvents.map((event) => (
+              <Link href={`/events/${event.id}`} key={event.id}>
+                <EventCard event={event} />
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

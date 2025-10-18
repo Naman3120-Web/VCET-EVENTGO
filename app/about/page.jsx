@@ -6,7 +6,7 @@ export default function AboutCollegePage() {
     <main className={styles.main}>
       <div className={styles.hero}>
         <Image
-          src="https://placehold.co/1200x400/000000/FFFFFF?text=VCET+Campus"
+          src="/images/image.jpg"
           alt="College Campus"
           width={1200}
           height={400}

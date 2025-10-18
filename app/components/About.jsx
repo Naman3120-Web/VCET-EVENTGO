@@ -2,18 +2,23 @@ import styles from "./About.module.css";
 
 export default function About() {
   return (
-    <section className={styles.aboutSection} id="about">
-      <h2 className={styles.title}>About VCET-EVENTGO</h2>
-      <div className={styles.content}>
-        <p>
-          VCET-EVENTGO is your centralized hub for all events happening at our college. 
-          Our mission is to bridge the information gap between departments and students, 
-          ensuring you never miss out on an opportunity to learn, engage, and grow.
-        </p>
-        <p>
-          This platform is built by students, for students, with a focus on providing 
-          a seamless, reliable, and up-to-date event feed.
-        </p>
+    // This outer section is important for spacing on the homepage
+    <section className={styles.section}>
+      <div className={styles.glowingCard}>
+        {/* These two divs are the animated elements */}
+        <div className={styles.borderFollower} />
+        <div className={styles.borderColorChanger} />
+
+        {/* This div holds the text content */}
+        <div className={styles.content}>
+          <h1 className={styles.title}>About VCET-EVENTGO</h1>
+          <p className={styles.description}>
+            This platform is the central hub for all events, workshops, and
+            activities happening at our college. Our goal is to create a vibrant,
+            connected campus where no one misses out on an opportunity to learn,
+            grow, and have fun.
+          </p>
+        </div>
       </div>
     </section>
   );
