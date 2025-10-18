@@ -1,51 +1,46 @@
+/* This is the key fix: We create a new "stacking context" for the homepage
+   and make ONLY its background transparent. */
 .main {
-  padding-top: 5rem; /* Add space for the top navbar on desktop */
+  isolation: isolate;
+  position: relative;
+  background-color: transparent;
 }
 
-.hero {
-  text-align: center;
-  padding: 6rem 1rem;
-  border-bottom: 1px solid #2a2a2a;
-}
-
-.heroTitle {
-  font-size: 3.5rem;
-  font-weight: 800;
-  letter-spacing: -1px;
-  color: #fff;
-  margin-bottom: 0.5rem;
-}
-
-.heroSubtitle {
-  font-size: 1.25rem;
-  color: #a0a0a0;
-}
-
+/* The section background is now transparent to let the hero animation show through. */
 .section {
-  padding: 4rem 2rem;
+  position: relative;
+  z-index: 1; /* Ensures it scrolls OVER the hero background */
+  padding: 6rem 2rem;
+  background-color: transparent;
 }
 
-.sectionTitle {
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: #ffffff;
-}
-
-.eventGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+.sectionContent {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* On mobile, add padding at the bottom for the navbar */
-@media (max-width: 640px) {
-  .main {
-    padding-top: 1rem;
-    padding-bottom: 6rem;
+.sectionTitle {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 4rem;
+  color: #fff;
+}
+
+.eventGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+  .eventGrid {
+    grid-template-columns: 1fr;
   }
 }
 

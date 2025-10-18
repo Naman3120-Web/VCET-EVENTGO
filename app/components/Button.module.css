@@ -1,0 +1,78 @@
+.button {
+  position: relative;
+  width: 12rem; /* w-48, extended for visibility */
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 9999px; /* rounded-full */
+  /* This is the fix: Adjusted padding */
+  padding: 0.75rem 1rem 0.75rem 1rem; /* More padding on the left */
+  text-align: center;
+  font-weight: 600;
+  color: #e0f2fe; /* sky-100 */
+
+  /* Glassmorphism background for visibility */
+  background-color: rgba(2, 132, 199, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.initialText {
+  display: inline-block;
+  /* This is the fix: Restoring original transition */
+  transform: translateX(0.25rem);
+  transition: all 0.3s;
+}
+
+.button:hover .initialText {
+  /* This is the fix: Restoring original hover effect */
+  transform: translateX(3rem);
+  opacity: 0;
+}
+
+.hoverContent {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  /* This is the fix: Restoring original position */
+  transform: translateX(3rem);
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #020617; /* A much darker color for better contrast */
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.button:hover .hoverContent {
+  /* This is the fix: Restoring original hover effect */
+  transform: translateX(-0.25rem);
+  opacity: 1;
+}
+
+.backgroundElement {
+  position: absolute;
+  /* This is the fix: Adjusted position for new padding */
+  left: 0.75rem; /* Positioned within the new padding area */
+  top: 50%;
+  transform: translateY(-50%) scale(1); /* Vertically centered */
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #38bdf8;
+  transition: all 0.3s;
+}
+
+.button:hover .backgroundElement {
+  /* This is the fix: Restoring original expanding effect */
+  left: 0%;
+  top: 0%;
+  height: 100%;
+  width: 100%;
+  transform: scale(1.8) translateY(0); /* Reset transform for expansion */
+  border-radius: 0;
+}
+
