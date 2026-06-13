@@ -110,5 +110,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
-np
