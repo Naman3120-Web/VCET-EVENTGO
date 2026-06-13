@@ -1,6 +1,6 @@
 # 🗓️ VCET EVENTGO
 
-**A centralized discovery and notification platform for Vidyalankar College of Engineering and Technology.**
+**A centralized discovery and notification platform for Vidyavardhini's College of Engineering and Technology.**
 
 ---
 
