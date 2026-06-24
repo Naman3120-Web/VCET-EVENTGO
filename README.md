@@ -1,12 +1,12 @@
-# 🗓️ VCET EVENTGO
+# 🛰️  THE CELESTIAL SHIP
 
-**A centralized discovery and notification platform for Vidyavardhini's College of Engineering and Technology.**
+**A centralized discovery and notification platform for Every College in India.**
 
 ---
 
 ## 📌 Project Overview
 
-VCET hosts a vibrant ecosystem of departments, clubs, and committees organizing seminars, workshops, and academic competitions. However, information is often lost in the noise of scattered platforms.
+Every College across India hosts a vibrant ecosystem of departments, clubs, and committees organizing seminars, workshops, and academic competitions. However, information is often lost in the noise of scattered platforms.
 
 > [!IMPORTANT]
 > **The Problem:** Event details are currently fragmented across individual department sites, WhatsApp groups, physical posters, and various social media pages, leading to missed opportunities for students.
@@ -64,7 +64,7 @@ Despite existing department websites, students often struggle because:
 2. **Discoverability:** Important updates are often buried under static content.
 3. **Prioritization:** It is hard to distinguish between a minor update and a major seminar.
 
-**VCET EVENTGO** solves this by aggregating, highlighting, and saving time, which directly leads to **increased student participation.**
+**THE CELESTIAL SHIP** solves this by aggregating, highlighting, and saving time, which directly leads to **increased student participation.**
 
 ---
 
@@ -87,8 +87,6 @@ Despite existing department websites, students often struggle because:
 
 ## 👤 Author
 
-**Naman Pandey**
-
-* *Artificial Intelligence & Data Science (VCET)*
+**Naman**
 
 ---
