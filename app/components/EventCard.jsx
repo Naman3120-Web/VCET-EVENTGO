@@ -84,7 +84,7 @@ const textVariants = {
   initial: { y: 0, x: 0, opacity: 0 },
   exit: { y: 0, x: 0, opacity: 0 },
   top: { y: -20, opacity: 1 },
-  bottom: { y: 2, opacity: 1 },
+  bottom: { y: 5, opacity: 1 },
   left: { x: -2, opacity: 1 },
   right: { x: 20, opacity: 1 },
 };

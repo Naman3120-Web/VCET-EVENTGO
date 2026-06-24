@@ -1,36 +1,22 @@
-import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabaseClient';
+import { NextResponse } from "next/server";
+import createClient from "@/lib/supabaseServer";
 
 export async function POST(request) {
-  // --- DEBUGGING STEP ---
-  // This will print the keys to your terminal console (where you run npm run dev).
-  console.log("Supabase URL loaded:", process.env.NEXT_PUBLIC_SUPABASE_URL);
-  console.log("Supabase Anon Key loaded:", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
-  // --------------------
+  const { email, password } = await request.json();
 
-  try {
-    const { email, password } = await request.json();
+  console.log(`${email}${password}`);
+  const supabase = await createClient();
 
-    if (!email || !password) {
-      return NextResponse.json(
-        { error: 'Email and password are required.' },
-        { status: 400 }
-      );
-    }
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 401 });
-    }
-
-    return NextResponse.json({ user: data.user, session: data.session }, { status: 200 });
-
-  } catch (error) {
-    console.error("Login API Error:", error);
-    return NextResponse.json({ error: 'An unexpected error occurred.' }, { status: 500 });
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 400 });
   }
+  return NextResponse.json(
+    { message: "Success", user: data.user },
+    { status: 200 },
+  );
 }

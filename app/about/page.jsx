@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 import Image from "next/image";
-
+console.log("rendering about page");
 export default function AboutCollegePage() {
   return (
     <main className={styles.main}>

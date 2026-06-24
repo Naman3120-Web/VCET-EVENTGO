@@ -9,7 +9,6 @@ export const metadata = {
   description: 'The official event hub for VCET.',
 };
 
-// This must be a default export of a React component.
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

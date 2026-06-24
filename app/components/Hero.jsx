@@ -2,12 +2,13 @@
 
 import React, { useRef, useEffect } from "react";
 import styles from "./Hero.module.css";
-import Button from "./Button"; // Import the new Button component
+import Button from "./Button"; 
 
 // This hook contains the full, original WebGL logic for the animated background.
 const useShaderBackground = (canvasRef) => {
   const animationFrameRef = useRef();
   const rendererRef = useRef(null);
+  const loopRef = useRef(null);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -34,7 +35,7 @@ const useShaderBackground = (canvasRef) => {
         if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
           console.error(
             "Shader compilation error:",
-            gl.getShaderInfoLog(shader)
+            gl.getShaderInfoLog(shader),
           );
         }
       }
@@ -43,10 +44,13 @@ const useShaderBackground = (canvasRef) => {
         const gl = this.gl;
         const vs = gl.createShader(gl.VERTEX_SHADER);
         const fs = gl.createShader(gl.FRAGMENT_SHADER);
-        this.compile(vs, `#version 300 es
+        this.compile(
+          vs,
+          `#version 300 es
           precision highp float;
           in vec4 position;
-          void main() { gl_Position = position; }`);
+          void main() { gl_Position = position; }`,
+        );
         this.compile(fs, this.shaderSource);
 
         this.program = gl.createProgram();
@@ -66,7 +70,7 @@ const useShaderBackground = (canvasRef) => {
         gl.bufferData(
           gl.ARRAY_BUFFER,
           new Float32Array(this.vertices),
-          gl.STATIC_DRAW
+          gl.STATIC_DRAW,
         );
         const position = gl.getAttribLocation(program, "position");
         gl.enableVertexAttribArray(position);
@@ -99,20 +103,49 @@ const useShaderBackground = (canvasRef) => {
         rendererRef.current.gl.viewport(0, 0, canvas.width, canvas.height);
       }
     };
-    
-    const loop = (now) => {
-      if (rendererRef.current) {
-        rendererRef.current.render(now);
+
+    const startLoop = () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
       }
+
+      const loop = (now) => {
+        if (document.visibilityState !== "visible") {
+          animationFrameRef.current = null;
+          return;
+        }
+
+        if (rendererRef.current) {
+          rendererRef.current.render(now);
+        }
+        animationFrameRef.current = requestAnimationFrame(loop);
+      };
+
+      loopRef.current = loop;
       animationFrameRef.current = requestAnimationFrame(loop);
     };
 
     resize();
-    loop(0);
+    startLoop();
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        startLoop();
+        return;
+      }
+
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+    };
+
     window.addEventListener("resize", resize);
-    
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -190,7 +223,6 @@ void main(void) {
 	O = vec4(col, 1.0);
 }`;
 
-
 // The main Hero Component
 const Hero = ({ headline, subtitle, buttons }) => {
   const canvasRef = useRef(null);
@@ -212,7 +244,7 @@ const Hero = ({ headline, subtitle, buttons }) => {
         {buttons && (
           <div className={styles.buttonContainer}>
             {buttons.primary && (
-              <Button // Use the new Button component
+              <Button 
                 text={buttons.primary.text}
                 onClick={buttons.primary.onClick}
               />
@@ -225,4 +257,3 @@ const Hero = ({ headline, subtitle, buttons }) => {
 };
 
 export default Hero;
-
