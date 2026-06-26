@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import styles from "./LoginForm.module.css";
@@ -8,19 +9,20 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // To display login errors
-  const [loading, setLoading] = useState(false); // To show a loading state
+  const [error, setError] = useState(""); 
+  const [loading, setLoading] = useState(false); 
+  const router = useRouter(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
+    setError(""); 
     setLoading(true);
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
@@ -28,19 +30,18 @@ const LoginForm = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        // If the response is not OK, set the error message from Supabase
-        throw new Error(data.error || 'Login failed. Please try again.');
+      
+        setError(data.error || "Login failed. Please try again.");
+        setPassword("");
+        setEmail("");
+        return handleSubmit;
       }
-
-      // --- LOGIN SUCCESSFUL ---
-      console.log('Login successful:', data);
-      // In a real app, you would redirect the user or save the session.
-      // For now, a success message is sufficient for testing.
-      alert("Login Successful! Check the console for session data.");
-
-    } catch (err) {
-      console.error('Login error:', err);
-      setError(err.message);
+      const Role = data.user.email;
+      if (Role === "andydan3030@gmail.com") {
+        router.push("/admin/dashboard");
+      } else {
+        router.push("departmentUser/dashboard");
+      }
     } finally {
       setLoading(false);
     }
@@ -86,7 +87,7 @@ const LoginForm = () => {
               </button>
             </div>
           </div>
-          
+
           {error && <p className={styles.errorText}>{error}</p>}
 
           <Button

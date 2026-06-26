@@ -38,14 +38,14 @@ export default function HomePage() {
   return (
     <main className={styles.main}>
       <Hero
-        headline={{ line1: "VCET-EVENTGO", line2: "Your College Events Hub" }}
+        headline={{ line1: "THE CELESTIAL SHIP", line2: "Your College Events Hub" }}
         subtitle="Discover, share, and never miss out on what's happening on campus. All events, one place."
         buttons={{
           primary: { text: "Explore Events", onClick: handlePrimaryClick },
         }}
       />
 
-      {/* The sections now follow the hero directly */}
+     
       <section id="events" className={styles.section}>
         <div className={styles.sectionContent}>
           <h2 className={styles.sectionTitle}>Upcoming Events</h2>
